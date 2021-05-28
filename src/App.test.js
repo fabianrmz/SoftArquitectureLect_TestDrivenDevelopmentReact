@@ -307,6 +307,68 @@ test('Look for an element at a index not yet created', () => {
   expect(app.container).toHaveTextContent('Alert: Position of "undefined"');
 
 });
+// ------------------------------------------ search the index of an object ----------------------------
+
+
+test('Get the positon of an object that exists', () => {
+  
+  const app = render(<App />);
+  const buttonAppend = app.getByText("Append");
+  const buttonIndexOf = app.getByText("Index Of");
+  const inputText = app.getByPlaceholderText("New values...");
+
+  fireEvent.change(inputText, {target: {value: "Any element"}});
+  fireEvent.click(buttonAppend);
+
+
+  fireEvent.change(inputText, {target: {value: "Any element"}});
+  fireEvent.click(buttonIndexOf);
+  expect(app.container).toHaveTextContent('Alert: "Any element" element exists at position 0');
+
+});
+
+test('Get the positon of an non existent object', () => {
+  
+  const app = render(<App />);
+  const buttonAppend = app.getByText("Append");
+  const buttonIndexOf = app.getByText("Index Of");
+  const inputText = app.getByPlaceholderText("New values...");
+
+  fireEvent.change(inputText, {target: {value: "Any element"}});
+  fireEvent.click(buttonAppend);
+
+
+  fireEvent.change(inputText, {target: {value: "Any other"}});
+
+  fireEvent.click(buttonIndexOf);
+  expect(app.container).toHaveTextContent('Alert: Element not found');
+
+});
+
+
+test('Get the index after adding different values', () => {
+  
+  const app = render(<App />);
+  const buttonAppend = app.getByText("Append");
+  const buttonIndexOf = app.getByText("Index Of");
+  const inputText = app.getByPlaceholderText("New values...");
+
+  fireEvent.change(inputText, {target: {value: "First"}});
+  fireEvent.click(buttonAppend);
+  fireEvent.change(inputText, {target: {value: "Any element"}});
+  fireEvent.click(buttonAppend);
+  fireEvent.change(inputText, {target: {value: "Any other element"}});
+  fireEvent.click(buttonAppend);
+
+  fireEvent.change(inputText, {target: {value: "Any other element"}});
+  fireEvent.click(buttonIndexOf);
+  expect(app.container).toHaveTextContent('Alert: "Any other element" element exists at position 2');
+
+});
+
+
+
+
 
 
 // ------------------------------------------ remove an item by index ----------------------------

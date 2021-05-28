@@ -21,8 +21,7 @@ function App() {
     if (inpString) {
       const newList = [...myList, (inpString)];
       SetMyList(newList);
-      setInpString("")
-
+      setInpString("");
     }
   }
 
@@ -42,6 +41,25 @@ function App() {
       }
     }
 
+  }
+
+  const getIndexOf = () => {
+    if (inpString) {
+      const charact = (inpString);
+      let found = false;
+      let pos = 0;
+      myList.forEach((elem, index) => {
+        if (elem === charact) {
+          found = true;
+          pos = index;
+        }
+      })
+      if (found) {
+        setAlert("\"" + charact + "\" element exists at position "+pos);
+      } else {
+        setAlert("Element not found");
+      }
+    }
   }
 
   const getElementByIndexHandler = () => {
@@ -85,6 +103,7 @@ function App() {
         <InputBox myString={inpString} setString={setStringHandler} />
         <Button className="ml-1" variant="outline-success" onClick={addItemHandler}>Append</Button>
         <Button className="ml-1" variant="outline-primary" onClick={checkIfExistsHandler}>Look for</Button>
+        <Button className="ml-1" variant="outline-primary" onClick={getIndexOf}>Index Of</Button>
         <Button className="ml-1" variant="outline-info" onClick={getElementByIndexHandler}>Element at (index)</Button>
         <Button className="ml-1" variant="outline-danger" onClick={clearListHandler}>Clear</Button>
       </Row>
