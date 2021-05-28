@@ -19,10 +19,11 @@
 
 ## How to run project for the first time
 
+1. Install dependencies
 ```bash
     npm install
 ```
-
+2. Run project
 ```bash
     npm start
 ```
