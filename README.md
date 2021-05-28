@@ -16,3 +16,15 @@
     - [x] tests for search the index of an object
 - [x] We need to remove an item by index
     - [x] tests for remove an item by index
+
+## How to run project for the first time
+
+```bash
+    npm install
+    npm start
+```
+## How to run tests
+
+```bash
+    npm test
+```
