@@ -4,7 +4,7 @@ import './App.css';
 import { useState, React } from 'react';
 import InputBox from './components/InputBox/InputBox';
 import Character from './components/Character/Character';
-import { Row, Button} from 'react-bootstrap';
+import { Row, Button } from 'react-bootstrap';
 
 function App() {
   const [myList, SetMyList] = useState([]);
@@ -18,38 +18,40 @@ function App() {
     SetMyList([])
   }
   const addItemHandler = (e) => {
-    if(inpString){
+    if (inpString) {
       const newList = [...myList, (inpString)];
       SetMyList(newList);
       setInpString("")
-      
+
     }
   }
 
   const checkIfExistsHandler = () => {
-    if(inpString){
+    if (inpString) {
       const charact = (inpString);
       let found = false;
       myList.forEach((elem) => {
-          if(elem === charact){
-            found = true;
-          }
+        if (elem === charact) {
+          found = true;
+        }
       })
-      if(found){
-        setAlert("\""+charact+"\" element exists");
-      }else{
+      if (found) {
+        setAlert("\"" + charact + "\" element exists");
+      } else {
         setAlert("Element doesnt exists");
       }
     }
-    
+
   }
 
   const getElementByIndexHandler = () => {
-   
-    if(inpString &&  !isNaN(parseInt(inpString))){
-        const index = myList[parseInt(inpString)];
 
-        setAlert("Position: "+index)
+    if (inpString && !isNaN(parseInt(inpString))) {
+      const index = myList[parseInt(inpString)];
+
+      setAlert("Position of \"" + index + "\"")
+    } else {
+      setAlert("Position not valid or existent")
     }
   }
 
@@ -59,12 +61,12 @@ function App() {
     let newList = []
 
     myList.forEach((elem, index) => {
-      if(index!==e){
-          newList.push(elem);
+      if (index !== e) {
+        newList.push(elem);
       }
     })
     SetMyList(newList)
-    
+
   }
 
 
@@ -72,10 +74,10 @@ function App() {
   const setStringHandler = (e) => {
     const myString = e.target.value;
     setInpString(myString)
-    
+
   }
 
-  
+
 
   return (
     <div >
@@ -87,13 +89,13 @@ function App() {
         <Button className="ml-1" variant="outline-danger" onClick={clearListHandler}>Clear</Button>
       </Row>
       <Row className="justify-content-md-center mt-3">
-        {getSizehandler()>0 ? myList.map((elem, key) => <Character key={key} character={elem} clicker={() => removeItemHandlerHandler(key)} />) : "[ ]"}
+        {getSizehandler() > 0 ? myList.map((elem, key) => <Character key={key} character={elem} clicker={() => removeItemHandlerHandler(key)} />) : "[ ]"}
       </Row>
       <Row className="justify-content-md-center mt-3">
-          {alert?"Alert: "+alert:""}
+        {alert ? "Alert: " + alert : ""}
       </Row>
       <Row className="justify-content-md-center mt-3">
-        { "Char count: " + getSizehandler() }
+        {"Element count: " + getSizehandler()}
       </Row>
 
 
