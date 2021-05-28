@@ -13,6 +13,6 @@
 - [x] We need to get elements by index
     - [x] tests for get elements by index
 - [x] We need to search the index of an object
-    - [ ] tests for search the index of an object
+    - [x] tests for search the index of an object
 - [x] We need to remove an item by index
     - [x] tests for remove an item by index
